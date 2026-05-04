@@ -1,0 +1,4 @@
+Installation method:
+Install with:
+devtools::install_github("jnguyen529/IrisTools")
+library(IrisTools)
