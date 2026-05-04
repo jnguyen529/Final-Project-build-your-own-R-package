@@ -13,8 +13,8 @@ vignette: >
 ## Setup
 Install with:
 ```r
-devtools::install_github("jnguyen529/IrisTools")
-library(IrisTools)
+devtools::install_github("jnguyen529/IrisAnalysis")
+library(IrisAnalysis)
 OR you can simply use the built in "iris" dataset in Rstudio
 ```
 
