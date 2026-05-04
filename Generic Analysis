@@ -1,0 +1,64 @@
+library(devtools)
+library(roxygen2)
+library(dplyr)
+library(tidyverse)
+library(GGally)
+library(sampling)
+
+#generic analyzation of iris data and plots as well as clean data.
+data("iris")
+head("iris")
+iris <- as_tibble(iris)
+iris
+
+print(iris, n = 3, width = Inf)
+
+iris %>% summarize_if(is.numeric, mean)
+
+ggpairs(iris, aes(color = Species))
+
+clean.data <- iris %>% drop_na() %>% unique()
+summary(clean.data)
+
+iris %>% group_by(Species) %>% summarize_all(mean)
+
+set.seed(1000)
+
+s <- iris %>% slice_sample(n = 15)
+ggpairs(s, aes(color = Species))
+
+s2 <- iris %>% slice(id2$ID_unit)
+ggpairs(s2, aes(color = Species))
+
+plotly::plot_ly(iris, x = ~Sepal.Length, y = ~Petal.Length, z = ~Sepal.Width,
+                size = ~Petal.Width, color = ~Species, type="scatter3d")
+
+pc <- iris %>% select(-Species) %>% as.matrix() %>% prcomp()
+summary(pc)
+
+iris_projected <- as_tibble(pc$x) %>% add_column(Species = iris$Species)
+ggplot(iris_projected, aes(x = PC1, y = PC2, color = Species)) + 
+  geom_point()
+
+ggplot(iris_projected, 
+       aes(x = PC1, y = 0, color = Species)) + 
+  geom_point() +
+  scale_y_continuous(expand=c(0,0)) +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank()
+  )
+
+scale_numeric <- function(x) x %>% mutate_if(is.numeric, function(y) as.vector(scale(y)))
+
+iris.scaled <- iris %>% scale_numeric()
+iris.scaled
+
+summary(iris.scaled)
+
+
+cc <- iris %>% select(-Species) %>% cor()
+cc
+
+ggplot(iris, aes(Petal.Length, Petal.Width)) + 
+  geom_point() +
+  geom_smooth(method = "lm")
