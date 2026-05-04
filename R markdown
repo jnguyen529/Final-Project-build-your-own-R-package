@@ -1,0 +1,37 @@
+---
+title: "Using IrisAnalysis"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using IrisAnalysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Introduction
+`IrisAnalysis` provides tools to analyze the `iris` dataset.
+
+## Setup
+Install with:
+```r
+devtools::install_github("jnguyen529/IrisTools")
+library(IrisTools)
+OR you can simply use the built in "iris" dataset in Rstudio
+```
+
+## Examples
+### Calculate Means
+```r
+means <- calc_iris_means()
+print(means)
+```
+
+### Plot Measurements
+```r
+plot_iris()
+```
+
+### Summarize Measurements
+```r
+summary <- summarize_iris()
+print(summary)
+```
