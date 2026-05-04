@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyverse)
 library(GGally)
 library(sampling)
+library(IrisAnalysis)
 
 #generic analyzation of iris data and plots as well as clean data.
 data("iris")
